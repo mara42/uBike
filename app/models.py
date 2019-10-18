@@ -25,6 +25,10 @@ class Bike(db.Model):
         db.session.add(r)
         db.session.commit()
         return True
+    
+    @classmethod
+    def find_free_bikes(cls):
+        return list(filter(lambda b: not b.is_rented, cls.query.all()))
 
     def return_bike(self):
         if not self.is_rented:
