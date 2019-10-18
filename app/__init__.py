@@ -15,5 +15,5 @@ app.config['SECRET_KEY'] = 'AJABJHGJKHDFGSKJHJDALKEILXNKAB'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-
+from app import models
 from app import routes
