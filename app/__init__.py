@@ -12,6 +12,15 @@ app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 app.config['SECRET_KEY'] = 'AJABJHGJKHDFGSKJHJDALKEILXNKAB'
+
+api_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "google_api.txt")
+if os.path.exists(api_path):
+    with open(api_path, 'r') as f:
+        g_api = f.read()
+else:
+    raise FileNotFoundError("need google api key")
+
+app.config['GOOGLE_API_KEY'] = g_api
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 

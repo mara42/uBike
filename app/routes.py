@@ -1,12 +1,16 @@
 from app import app
 from flask import render_template, flash, redirect, url_for
 from app.forms import LoginForm
+from app.models import Bike, User, Rental
+from collections import namedtuple
 
 
 @app.route('/')
 @app.route('/index')
 def hello():
-    return render_template('index.html', title='uBike')
+    key = app.config['GOOGLE_API_KEY']
+    bikes = Bike.query.all()
+    return render_template('index.html', bikes=bikes, key=key)
 
 
 @app.route('/login', methods=['GET', 'POST'])

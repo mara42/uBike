@@ -1,2 +1,25 @@
 {% extends "base.html" %}
-<h1>Hello, world!</h1>
+{% block content %}
+<h1>üBike</h1>
+{% for bike in bikes %}
+<p>{{ bike.id }}</p>
+{% endfor %}
+
+<div style="height:100%; width:100%;">
+<div id="map-canvas"></div>
+   <script>
+	   var map;
+		function showMap() {
+			var center = new google.maps.LatLng(55.859702, -4.2531847);
+
+			map = new google.maps.Map(document.getElementById('map-canvas'), {
+				center: {lat: 55.859702, lng:  -4.2531847},
+				zoom: 8
+			});
+		}
+   </script>
+   <script async
+	   src="https://maps.googleapis.com/maps/api/js?key={{key|safe}}&callback=showMap">
+   </script>
+</div>
+{% endblock %}
