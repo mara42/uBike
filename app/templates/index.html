@@ -1,25 +1,32 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <h1>üBike</h1>
-{% for bike in bikes %}
-<p>{{ bike.id }}</p>
-{% endfor %}
 
 <div style="height:100%; width:100%;">
-<div id="map-canvas"></div>
-   <script>
-	   var map;
-		function showMap() {
-			var center = new google.maps.LatLng(55.859702, -4.2531847);
+  <div id="map-canvas"></div>
+  <script>
+         var map;
+         var markers = [];
+          function showMap() {
+          	var center = new google.maps.LatLng({{ center[0]}}, {{center[1] }});
 
-			map = new google.maps.Map(document.getElementById('map-canvas'), {
-				center: {lat: 55.859702, lng:  -4.2531847},
-				zoom: 8
-			});
+          	map = new google.maps.Map(document.getElementById('map-canvas'), {
+          		center: center,
+          		zoom: 15
+          	});
+       {% for bike in bikes %}
+       markers.push(new google.maps.Marker({
+          	position: new google.maps.LatLng({{bike.lat}}, {{bike.lng}}),
+    	   label: "#{{ bike.id }}",
+    	   map:map
+		}))
+		{% endfor %}
 		}
-   </script>
-   <script async
-	   src="https://maps.googleapis.com/maps/api/js?key={{key|safe}}&callback=showMap">
-   </script>
+  </script>
+  <script
+    async
+    src="https://maps.googleapis.com/maps/api/js?key={{
+      key | safe
+    }}&callback=showMap"
+  ></script>
 </div>
 {% endblock %}
