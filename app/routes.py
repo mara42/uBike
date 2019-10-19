@@ -36,6 +36,11 @@ def login():
     return render_template("login.html", title="Sign In", form=form)
 
 
+@app.route("/rental", methods=["GET", "POST"])
+def rental():
+    return render_template("rental.html")
+
+
 # @app.route('/login')
 # def login_page():
 #     form = LoginForm()
