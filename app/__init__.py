@@ -8,7 +8,7 @@ from flask_migrate import Migrate
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir, "bikesdatabase.db"))
 
-app = Flask(__name__, static_url_path='', 
+app = Flask(__name__, static_url_path='',
             static_folder='templates/static')
 
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
@@ -27,3 +27,4 @@ migrate = Migrate(app, db)
 
 from app import models
 from app import routes
+from app import endpoint

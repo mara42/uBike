@@ -41,7 +41,7 @@ class Bike(db.Model):
 
     def get_active_rental(self):
         return Rental.query.filter_by(bike_id=self.id,
-                                      return_date=None).first()
+                                      return_time=None).first()
 
 
 class User(db.Model, flask_login.UserMixin):
@@ -51,7 +51,6 @@ class User(db.Model, flask_login.UserMixin):
 
     def __repr__(self):
         return '<User {}>'.format(self.id)
-
 
 class Rental(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
