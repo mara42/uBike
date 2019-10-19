@@ -1,3 +1,7 @@
+* {
+    font-family: "Comic Sans MS", "Comic Sans", cursive, sans-serif;
+}
+
 body {
     padding-top: 5rem;
 }
@@ -9,4 +13,10 @@ body {
 
 #map-canvas {
     height: 550px;
-    weight: 100%
+    weight: 100%;
+}
+
+#demo {
+    color: red;
+    font-size: 5em;
+}
