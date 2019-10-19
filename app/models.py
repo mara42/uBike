@@ -1,4 +1,5 @@
 from app import db
+import flask_login
 
 class Bike(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -7,7 +8,7 @@ class Bike(db.Model):
     def __repr__(self):
         return '<Bike {}>'.format(self.id)
 
-class User(db.Model):
+class User(db.Model, flask_login.UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     rentals = db.relationship('Rental', backref='Client', lazy=True)
 
